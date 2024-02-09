@@ -7,7 +7,7 @@ import Signup from './src/pages/Signup';
 export default function App()
 {
   return(
-    //<Login/>
-    <Signup/>
+    <Login/>
+    //<Signup/>
   )
 }

@@ -10,13 +10,14 @@ export default function Login() {
 
     return (
         <View style={styles.container}>
-            <Text>{"<Logo aqui>"}</Text>
+            <Text style={{color:"#fff"}}>{"<Logo aqui>"}</Text>
             <View style={styles.inputArea}>
                 <Text
                 style={styles.inputLabel}>
                     Email
                 </Text>
-                <TextInput 
+                <TextInput
+                placeholderTextColor={"#FFF"} 
                 style = {styles.input} 
                 placeholder="Digite seu e-mail"
                 onChangeText={setEmail}/>
@@ -26,6 +27,7 @@ export default function Login() {
                     Senha
                 </Text>
                 <TextInput
+                placeholderTextColor={"#FFF"}
                 style = {styles.input} 
                 placeholder="Digite sua senha" 
                 secureTextEntry
@@ -47,7 +49,7 @@ export default function Login() {
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        backgroundColor:"#ffffff",
+        backgroundColor:"#1d1d2e",
         alignItems:'center',
         justifyContent:'center',
         padding:50
@@ -57,21 +59,24 @@ const styles = StyleSheet.create({
     },
     input:{
         borderWidth:0.2,
+        borderColor:"#8a8a8a",
+        color:"#fff",
         borderRadius:10,
         marginBottom:25,
         marginTop:10,
-        width:400,
-        height:60
+        width:360,
+        height:60,
+        padding:15
     },
     inputLabel:{
         fontSize:20,
         marginLeft:10,
-        color:'#000000'
+        color:'#fff'
     },
     buttonStyle:{
         alignItems:'center',
         justifyContent:'center',
-        width:400,
+        width:360,
         backgroundColor:'#6200EE',
         borderRadius:10,
         height:60,
@@ -80,6 +85,6 @@ const styles = StyleSheet.create({
     buttonFontStyle:{
         fontSize:28,
         fontWeight:'400',
-        color:"#000000"
+        color:"#fff"
     }
 })

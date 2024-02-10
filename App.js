@@ -3,11 +3,12 @@ import { View, Text, ActivityIndicator } from 'react-native';
 import api from './src/services/api';
 import Login from './src/pages/Login';
 import Signup from './src/pages/Signup';
+import StackRoutes from './src/routes/StackRoutes';
 
 export default function App()
 {
   return(
-    <Login/>
+    <StackRoutes/>
     //<Signup/>
   )
 }

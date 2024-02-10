@@ -1,4 +1,4 @@
-import { View,TextInput, Text, StyleSheet } from "react-native";
+import { View,TextInput, Text, StyleSheet, Pressable } from "react-native";
 import { useState } from "react";
 import SubmitButton from "../../components/SubmitButton";
 
@@ -42,6 +42,12 @@ export default function Login() {
             onPress={()=>{
                 console.log('ola')
             }}/>
+            <View style={{flexDirection:'row', marginTop:20}}>
+            <Text style={{color:'white'}}>Não tem uma conta?</Text>
+            <Pressable onPress={()=>console.log('clicou')}>
+                <Text style={{color:'#6200EE'}}> Crie uma</Text>
+            </Pressable>
+            </View>
         </View>
     );
 }
@@ -52,7 +58,7 @@ const styles = StyleSheet.create({
         backgroundColor:"#1d1d2e",
         alignItems:'center',
         justifyContent:'center',
-        padding:50
+        padding:50,
     },
     inputArea:{
         paddingTop:50

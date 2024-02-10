@@ -3,7 +3,7 @@ import { useState } from "react";
 import SubmitButton from "../../components/SubmitButton";
 
 
-export default function Login() {
+export default function Login({navigation}) {
 
     const [email,setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -40,14 +40,17 @@ export default function Login() {
             buttonFontStyle ={styles.buttonFontStyle}
             text ="Login"
             onPress={()=>{
-                console.log('ola')
+                navigation.navigate('Tasks')
             }}/>
-            <View style={{flexDirection:'row', marginTop:20}}>
-            <Text style={{color:'white'}}>Não tem uma conta?</Text>
-            <Pressable onPress={()=>console.log('clicou')}>
-                <Text style={{color:'#6200EE'}}> Crie uma</Text>
-            </Pressable>
+
+
+            <View style={{flexDirection:'row', marginTop:20,alignItems:'center'}}>
+                <Text style={{color:'white'}}>Não tem uma conta?</Text>
+                <Pressable onPress={()=>navigation.navigate('Signup')}>
+                    <Text style={{color:'#6200EE',fontWeight:'bold',fontSize:18,}}> Crie uma</Text>
+                </Pressable>
             </View>
+
         </View>
     );
 }

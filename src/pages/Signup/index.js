@@ -64,7 +64,7 @@ export default function Signup()
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        backgroundColor:"#1d1d2e",
+        backgroundColor:"#101026",
         alignItems:'center',
         justifyContent:'center',
         padding:50

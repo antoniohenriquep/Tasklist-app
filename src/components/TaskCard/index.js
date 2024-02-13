@@ -1,25 +1,31 @@
 import { useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 /*
 
 */ 
 export default function TaskCard({data}) {
   const [task, setTask] = useState(data)
   return (
-    <Pressable style={styles.container} onPress={()=>{console.log('Ola')}}>
-      <View>
-        <Text style={styles.name}>
-          {task.name}
-        </Text>
+    <View >
+      <Pressable  style={styles.container} onPress={()=>{console.log('Ola')}}>
+        <View>
+          <Text style={styles.name}>
+            {task.name}
+          </Text>
 
-        <Text style={styles.date}>
-          {task.date}
-        </Text>
-      </View>
-      <Text style={styles.date}>
-        {task.date ? 'A fazer':'Realizada'}
-      </Text>
-   </Pressable>
+          <Text style={styles.date}>
+            {task.date}
+          </Text>
+          </View>
+          <Text style={styles.date}>
+            {task.date ? 'A fazer':'Realizada'}
+          </Text>
+      </Pressable>
+      <Modal
+      visible={false}>
+        <Text>Ola</Text>
+      </Modal>
+   </View>
   );
 }
 
@@ -45,6 +51,9 @@ const styles = StyleSheet.create({
     fontWeight:'400',
     color:'#fff',
     marginTop:15
+  },
+  addTaskButton:{
+    position:'absolute'
   }
 
 })

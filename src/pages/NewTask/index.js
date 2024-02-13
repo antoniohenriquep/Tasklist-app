@@ -7,7 +7,13 @@ import SubmitButton from '../../components/SubmitButton';
 export default function NewTask({navigation}) {
     const [name, setName] = useState('')
     const [date, setDate] = useState('')
- return (
+
+    async function addTask()
+    {
+        
+    }
+
+    return (
    <View style={styles.container} >
     <Text>Nova tarefa</Text>
 
@@ -30,7 +36,7 @@ export default function NewTask({navigation}) {
     buttonFontStyle ={styles.buttonFontStyle}
     text ="Adicionar tarefa"
     onPress={()=>{
-        navigation.navigate('Tasks')
+        addTask()
     }}/>
 
 

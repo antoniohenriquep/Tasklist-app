@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Text, View, StyleSheet, TextInput} from 'react-native';
 import SubmitButton from '../../components/SubmitButton';
-//npm install @react-native-community/datetimepicker --save
+
 
 
 export default function NewTask({navigation}) {

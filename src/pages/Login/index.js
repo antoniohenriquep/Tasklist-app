@@ -1,16 +1,18 @@
 import { View,TextInput, Text, StyleSheet, Pressable } from "react-native";
 import { useState } from "react";
 import SubmitButton from "../../components/SubmitButton";
-
+import Icon from  'react-native-vector-icons/AntDesign'
 
 export default function Login({navigation}) {
 
     const [email,setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [hidePassword, setHidePassword] = useState(true)
 
     return (
         <View style={styles.container}>
             <Text style={{color:"#fff"}}>{"<Logo aqui>"}</Text>
+
             <View style={styles.inputArea}>
                 <Text
                 style={styles.inputLabel}>
@@ -26,14 +28,19 @@ export default function Login({navigation}) {
                 style={styles.inputLabel}>
                     Senha
                 </Text>
-                <TextInput
-                placeholderTextColor={"#FFF"}
-                style = {styles.input} 
-                placeholder="Digite sua senha" 
-                secureTextEntry
-                onChangeText={setPassword}
-                />
-                            
+
+                <View style={styles.input}>
+                    <TextInput
+                    placeholderTextColor={"#FFF"}
+                    style = {{width:300}} 
+                    placeholder="Digite sua senha" 
+                    secureTextEntry = {hidePassword}
+                    onChangeText={setPassword}
+                    />
+                    <Pressable onPress={()=>setHidePassword(!hidePassword)}>
+                        <Icon name={hidePassword ? 'eyeo' :'eye'} size={30} color='#fff'/>
+                    </Pressable>
+                </View>               
             </View>
             <SubmitButton 
             buttonStyle={styles.buttonStyle}
@@ -75,7 +82,9 @@ const styles = StyleSheet.create({
         marginTop:10,
         width:360,
         height:60,
-        padding:15
+        paddingHorizontal:15,
+        flexDirection:'row',
+        alignItems: 'center',
     },
     inputLabel:{
         fontSize:20,
@@ -95,5 +104,13 @@ const styles = StyleSheet.create({
         fontSize:28,
         fontWeight:'400',
         color:"#fff"
-    }
+    },
+    inputContainer: {
+        width: '100%', 
+        flexDirection: 'row',
+        alignItems: 'center',
+
+        
+    
+      }
 })

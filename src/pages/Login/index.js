@@ -105,12 +105,4 @@ const styles = StyleSheet.create({
         fontWeight:'400',
         color:"#fff"
     },
-    inputContainer: {
-        width: '100%', 
-        flexDirection: 'row',
-        alignItems: 'center',
-
-        
-    
-      }
 })

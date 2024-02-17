@@ -32,7 +32,7 @@ export default function Login({navigation}) {
                 <View style={styles.input}>
                     <TextInput
                     placeholderTextColor={"#FFF"}
-                    style = {{width:300}} 
+                    style = {{width:300,color:'#fff'}} 
                     placeholder="Digite sua senha" 
                     secureTextEntry = {hidePassword}
                     onChangeText={setPassword}

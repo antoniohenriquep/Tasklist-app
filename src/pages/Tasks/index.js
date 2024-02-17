@@ -1,6 +1,7 @@
-import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import TaskCard from '../../components/TaskCard';
 import Separator from '../../components/Separator';
+import { useState } from 'react';
 
 const data = [
     {id:0, name:"Tirar o lixo", date:'05/02/2024', done:false},
@@ -12,6 +13,7 @@ const data = [
 
 export default function Tasks({navigation})
 {
+
  return (
   <View style={styles.container}>
     <FlatList
@@ -19,9 +21,11 @@ export default function Tasks({navigation})
     keyExtractor={item=>String(item.id)}
     renderItem={({item})=> <TaskCard data={item}/>}
     />
+
     <Pressable style={styles.addTaskButtonContainer} onPress={()=>{navigation.navigate('New Task')}}>
       <Text style={styles.addTaskButtonFont}>+</Text>
     </Pressable>
+    
   </View>
   );
 }

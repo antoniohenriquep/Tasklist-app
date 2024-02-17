@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
-/*
+import TaskOptionsModal from '../TaskOptionsModal';
 
-*/ 
 export default function TaskCard({data}) {
-  const [task, setTask] = useState(data)
+  const task = data
+  const [modalVisible, setModalVisible] = useState(false)
   return (
     <View >
-      <Pressable  style={styles.container} onPress={()=>{console.log('Ola')}}>
+      <Pressable  style={styles.container} onPress={()=>{setModalVisible(!modalVisible)}}>
         <View>
           <Text style={styles.name}>
             {task.name}
@@ -21,10 +21,19 @@ export default function TaskCard({data}) {
             {task.date ? 'A fazer':'Realizada'}
           </Text>
       </Pressable>
-      <Modal
+
+      <Modal 
+      style={{justifyContent:'center',alignItems:'center',flex:1}}
+      visible={modalVisible}
+      animationType='fade'
+      transparent={true}>
+        <TaskOptionsModal closeModal ={()=>{setModalVisible(!modalVisible)}}/>
+      </Modal>
+      
+      {/* <Modal
       visible={false}>
         <Text>Ola</Text>
-      </Modal>
+      </Modal> */}
    </View>
   );
 }

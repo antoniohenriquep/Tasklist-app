@@ -83,10 +83,6 @@ export default function NewTask({navigation}) {
     onPress={()=>{
         addTask()
     }}/>
-
-
-
-    {/* <Text style={styles.inputLabel}>{name}</Text> */}
    </View>
   );
 }

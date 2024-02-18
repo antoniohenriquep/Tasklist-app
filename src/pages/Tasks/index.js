@@ -19,13 +19,16 @@ export default function Tasks({navigation})
     <FlatList
     data={data}
     keyExtractor={item=>String(item.id)}
-    renderItem={({item})=> <TaskCard data={item}/>}
+    renderItem={({item})=> 
+    <TaskCard 
+    data={item}
+    navigation={navigation}/>}
     />
 
     <Pressable style={styles.addTaskButtonContainer} onPress={()=>{navigation.navigate('New Task')}}>
       <Text style={styles.addTaskButtonFont}>+</Text>
     </Pressable>
-    
+
   </View>
   );
 }

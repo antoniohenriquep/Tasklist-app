@@ -1,10 +1,14 @@
 import { useState } from 'react';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import TaskOptionsModal from '../TaskOptionsModal';
+import { useNavigation } from '@react-navigation/native';
+
 
 export default function TaskCard({data}) {
+  const navigation = useNavigation()
   const task = data
   const [modalVisible, setModalVisible] = useState(false)
+  const {id,name,date} = data
   return (
     <View >
       <Pressable  style={styles.container} onPress={()=>{setModalVisible(!modalVisible)}}>
@@ -27,7 +31,12 @@ export default function TaskCard({data}) {
       visible={modalVisible}
       animationType='fade'
       transparent={true}>
-        <TaskOptionsModal closeModal ={()=>{setModalVisible(!modalVisible)}}/>
+        <TaskOptionsModal 
+        closeModal ={()=>{setModalVisible(!modalVisible)}}
+        editButtonPress={()=>{
+          setModalVisible(!modalVisible)
+          navigation.navigate('Edit Task',{id,name,date})
+          }}/>
       </Modal>
       
       {/* <Modal

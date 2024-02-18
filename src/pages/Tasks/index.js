@@ -1,6 +1,5 @@
 import { FlatList, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import TaskCard from '../../components/TaskCard';
-import Separator from '../../components/Separator';
 import { useState } from 'react';
 
 const data = [

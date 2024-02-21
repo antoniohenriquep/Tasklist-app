@@ -9,6 +9,15 @@ export default function Login({navigation}) {
     const [password, setPassword] = useState("")
     const [hidePassword, setHidePassword] = useState(true)
 
+    function handleLogin()
+    {
+        if(email === '' || password === '')
+        {
+            return
+        }
+        console.log(email, password);
+    }
+
     return (
         <View style={styles.container}>
             <Text style={{color:"#fff"}}>{"<Logo aqui>"}</Text>
@@ -46,9 +55,7 @@ export default function Login({navigation}) {
             buttonStyle={styles.buttonStyle}
             buttonFontStyle ={styles.buttonFontStyle}
             text ="Login"
-            onPress={()=>{
-                navigation.navigate('Tasks')
-            }}/>
+            onPress={handleLogin}/>
 
 
             <View style={{flexDirection:'row', marginTop:20,alignItems:'center'}}>

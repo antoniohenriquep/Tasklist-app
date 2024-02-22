@@ -2,6 +2,8 @@ import { View,TextInput, Text, StyleSheet, Pressable } from "react-native";
 import { useState } from "react";
 import SubmitButton from "../../components/SubmitButton";
 import Icon from  'react-native-vector-icons/AntDesign'
+import { api } from "../../services/api";
+import { useAuth } from "../../contexts/AuthContext";
 
 export default function Login({navigation}) {
 
@@ -9,13 +11,16 @@ export default function Login({navigation}) {
     const [password, setPassword] = useState("")
     const [hidePassword, setHidePassword] = useState(true)
 
-    function handleLogin()
+    const {login} = useAuth()
+
+    async function handleLogin()
     {
         if(email === '' || password === '')
         {
             return
         }
-        console.log(email, password);
+
+        await login({email,password})
     }
 
     return (

@@ -9,7 +9,7 @@ export function AuthProvider({children})
 {
     const [user,setUser] = useState(null)
     const [loadingAuth,setLoadingAuth] = useState(false)
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
 
     const isAuthenticated = !!user
 
@@ -33,7 +33,8 @@ export function AuthProvider({children})
             setLoading(false)
         }
 
-        getUser()
+        // getUser()
+        // logout()
     },[])
 
     async function login({email, password})
@@ -88,7 +89,13 @@ export function AuthProvider({children})
         }
     }
     
-    
+    async function logout()
+    {
+        await AsyncStorage.clear().then(()=>{
+            setUser(null)
+        })
+    }
+
     return(
         <AuthContext.Provider value={{user,isAuthenticated,login,register,loading,loadingAuth}}>
             {children}

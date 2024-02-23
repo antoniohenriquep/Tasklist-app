@@ -1,4 +1,4 @@
-import { View,TextInput, Text, StyleSheet, Pressable } from "react-native";
+import { View,TextInput, Text, StyleSheet, Pressable, ActivityIndicator } from "react-native";
 import { useState } from "react";
 import SubmitButton from "../../components/SubmitButton";
 import Icon from  'react-native-vector-icons/AntDesign'
@@ -11,7 +11,7 @@ export default function Login({navigation}) {
     const [password, setPassword] = useState("")
     const [hidePassword, setHidePassword] = useState(true)
 
-    const {login} = useAuth()
+    const {login,loadignAuth} = useAuth()
 
     async function handleLogin()
     {
@@ -66,7 +66,11 @@ export default function Login({navigation}) {
             <View style={{flexDirection:'row', marginTop:20,alignItems:'center'}}>
                 <Text style={{color:'white'}}>Não tem uma conta?</Text>
                 <Pressable onPress={()=>navigation.navigate('Signup')}>
-                    <Text style={{color:'#6200EE',fontWeight:'bold',fontSize:18,}}> Crie uma</Text>
+                    {loadignAuth ? (
+                        <ActivityIndicator size={25} color={"#fff"}/>
+                    ):(                    
+                        <Text style={{color:'#6200EE',fontWeight:'bold',fontSize:18,}}> Crie uma</Text>)}
+
                 </Pressable>
             </View>
 

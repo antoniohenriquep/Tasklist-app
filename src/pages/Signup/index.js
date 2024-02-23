@@ -1,13 +1,29 @@
 import { View,TextInput, Text, StyleSheet } from "react-native";
 import { useState } from "react";
 import SubmitButton from "../../components/SubmitButton";
+import { useAuth } from "../../contexts/AuthContext";
 
 
-export default function Signup() 
+export default function Signup({navigation}) 
 {
     const [name, setName] = useState("")
     const [email,setEmail] = useState("")
     const [password, setPassword] = useState("")
+
+    const {register} = useAuth()
+
+    async function handleRegister()
+    {
+
+        if(name === '' ||email === '' || password === '')
+        {
+            return
+        }
+
+        await register({name,email,password})
+        navigation.navigate('Login')
+    }
+    
 
     return (
         <View style={styles.container}>
@@ -54,9 +70,7 @@ export default function Signup()
             buttonStyle={styles.buttonStyle}
             buttonFontStyle ={styles.buttonFontStyle}
             text ="Registrar-se"
-            onPress={()=>{
-                console.log('ola')
-            }}/>
+            onPress={handleRegister}/>
         </View>
     );
 }

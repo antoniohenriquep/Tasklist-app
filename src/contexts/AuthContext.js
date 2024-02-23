@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import { api } from "../services/api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation } from "@react-navigation/native";
 
 const AuthContext = createContext()
 
@@ -45,9 +46,27 @@ export function AuthProvider({children})
         }
     }
 
+    async function register({name,email,password})
+    {
+        setLoadingAuth(true)
+
+        try {
+            const response = await api.post('/register',{
+                name,
+                email,
+                password
+            })
+
+            console.log(response.data);
+            setLoadingAuth(false)
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    
     
     return(
-        <AuthContext.Provider value={{user,isAuthenticated,login}}>
+        <AuthContext.Provider value={{user,isAuthenticated,login,register}}>
             {children}
         </AuthContext.Provider>
     )

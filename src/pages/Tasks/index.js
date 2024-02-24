@@ -1,7 +1,9 @@
+
 import { FlatList, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import TaskCard from '../../components/TaskCard';
-import { useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
+import { useFocusEffect } from '@react-navigation/native';
 
 // const data = [
 //     {id:0, name:"Tirar o lixo", date:'05/02/2024', done:false},
@@ -17,18 +19,18 @@ export default function Tasks({navigation})
   
   const [data, setData] = useState([])
 
-  useEffect(()=>{
-    
-    async function getTasks()
-    {
-      const response = await api.get('/tasks')
-      setData(response.data)
-      console.log(response.data)
-    }
+  async function getTasks()
+  {
+    let response = await api.get('/tasks')
+    setData(response.data)
+    console.log('a')
+  }
 
-    getTasks()
-
-  },[])
+  useFocusEffect(
+    useCallback(() => {
+      getTasks();
+    }, [])
+  );
 
   return (
     <View style={styles.container}>

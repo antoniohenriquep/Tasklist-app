@@ -3,24 +3,33 @@ import { Text, View, StyleSheet, TextInput, Pressable, Platform} from 'react-nat
 import SubmitButton from '../../components/SubmitButton';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useRoute } from '@react-navigation/native';
+import { useAuth } from '../../contexts/AuthContext';
 
 
 
 export default function EditTask({navigation}) 
 {
     const route = useRoute()
+    const {api} = useAuth()
+
+    const id = route.params._id
 
     const [name, setName] = useState(route.params.name)
     const [dateTask, setDateTask] = useState(route.params.date)
     const [date, setDate] = useState(new Date())
     const [showPicker, setShowPicker] = useState(false)
     
-    
-
-    async function editTask()
+    async function handleEditTask()
     {
-        
+        await api.put(`/tasks/${id}`,{
+            name,
+            date
+        })
+
+        navigation.navigate('Tasks')
     }
+
+
 
     function toggleDatePicker()
     {
@@ -54,6 +63,7 @@ export default function EditTask({navigation})
     <Text style={styles.inputLabel}>Nome da tarefa</Text>
     <TextInput 
     style={styles.input}
+    value={name}
     placeholder='Ex: Jogar lixo fora'
     placeholderTextColor={"#FFF"}
     onChangeText={setName}/>
@@ -87,7 +97,7 @@ export default function EditTask({navigation})
     buttonFontStyle ={styles.buttonFontStyle}
     text ="Editar tarefa"
     onPress={()=>{
-        editTask()
+        handleEditTask()
     }}/>
    </View>
   );

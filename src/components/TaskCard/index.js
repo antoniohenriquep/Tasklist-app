@@ -8,7 +8,7 @@ export default function TaskCard({data}) {
   const navigation = useNavigation()
   const task = data
   const [modalVisible, setModalVisible] = useState(false)
-  const {id,name,date} = data
+  const {_id,name,date} = data
   return (
     <View >
       <Pressable  style={styles.container} onPress={()=>{setModalVisible(!modalVisible)}}>
@@ -34,8 +34,9 @@ export default function TaskCard({data}) {
         <TaskOptionsModal 
         closeModal ={()=>{setModalVisible(!modalVisible)}}
         editButtonPress={()=>{
+          console.log(_id)
           setModalVisible(!modalVisible)
-          navigation.navigate('Edit Task',{id,name,date})
+          navigation.navigate('Edit Task',{_id,name,date})
           }}/>
       </Modal>
       

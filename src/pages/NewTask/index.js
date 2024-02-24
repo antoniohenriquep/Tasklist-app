@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Text, View, StyleSheet, TextInput, Pressable, Platform} from 'react-native';
 import SubmitButton from '../../components/SubmitButton';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { useAuth } from '../../contexts/AuthContext';
 
 
 
@@ -11,9 +12,17 @@ export default function NewTask({navigation}) {
     const [date, setDate] = useState(new Date())
     const [showPicker, setShowPicker] = useState(false)
 
-    async function addTask()
+    const {api} = useAuth()
+
+    async function handleAddTask()
     {
-        
+        await api.post('/tasks',
+        {
+            name,
+            date: dateTask
+        })
+
+        navigation.navigate('Tasks')
     }
 
     function toggleDatePicker()
@@ -81,7 +90,7 @@ export default function NewTask({navigation}) {
     buttonFontStyle ={styles.buttonFontStyle}
     text ="Adicionar tarefa"
     onPress={()=>{
-        addTask()
+        handleAddTask()
     }}/>
    </View>
   );

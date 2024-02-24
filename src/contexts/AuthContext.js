@@ -9,7 +9,7 @@ export function AuthProvider({children})
 {
     const [user,setUser] = useState(null)
     const [loadingAuth,setLoadingAuth] = useState(false)
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
 
     const isAuthenticated = !!user
 
@@ -32,8 +32,8 @@ export function AuthProvider({children})
             }
             setLoading(false)
         }
-
-        // getUser()
+        
+        getUser()
         // logout()
     },[])
 
@@ -97,7 +97,14 @@ export function AuthProvider({children})
     }
 
     return(
-        <AuthContext.Provider value={{user,isAuthenticated,login,register,loading,loadingAuth}}>
+        <AuthContext.Provider value={{
+            user,
+            isAuthenticated,
+            login,
+            register,
+            loading,
+            loadingAuth,
+            api}}>
             {children}
         </AuthContext.Provider>
     )

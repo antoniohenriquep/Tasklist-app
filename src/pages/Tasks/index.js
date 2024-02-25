@@ -15,7 +15,6 @@ export default function Tasks({navigation})
   {
     let response = await api.get('/tasks')
     setData(response.data)
-    console.log('a')
   }
 
   useFocusEffect(
@@ -31,7 +30,7 @@ export default function Tasks({navigation})
       keyExtractor={item=>String(item._id)}
       renderItem={({item})=> 
         <TaskCard 
-        forceUpdate={getTasks}
+        setTasks = {setData}
         data={item}
         />
       }/>

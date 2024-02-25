@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useAuth } from '../../contexts/AuthContext';
 
 
-export default function TaskCard({data,forceUpdate}) {
+export default function TaskCard({data,setTasks}) {
 
   const navigation = useNavigation()
   const task = data
@@ -16,9 +16,10 @@ export default function TaskCard({data,forceUpdate}) {
 
   async function handleDeleteTask()
   {
-      await api.delete(`/tasks/${_id}`)
+      const response = await api.delete(`/tasks/${_id}`)
       setModalVisible(!modalVisible)
-      forceUpdate()
+      setTasks(response.data)
+
   }
 
   return (

@@ -22,7 +22,9 @@ export default function TaskOptionsModal(props)
                         </Text>
                     </Pressable>
 
-                    <Pressable style={styles.genericButton}>
+                    <Pressable 
+                    style={styles.genericButton}
+                    onPress={props.completeTaskButtonPress}>
                         <Text style={{color:'green',fontWeight:'bold',fontSize:20}}
                         >Concluir</Text>
                     </Pressable>

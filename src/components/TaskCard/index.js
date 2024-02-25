@@ -22,6 +22,17 @@ export default function TaskCard({data,setTasks}) {
 
   }
 
+  async function handleCompleteTask()
+  {
+    //console.log('a')
+    const response = await api.put(`/tasks/complete/${_id}`,{
+      done: true
+    })
+    setModalVisible(!modalVisible)
+    setTasks(response.data)
+  }
+
+
   return (
     <View >
       <Pressable  style={styles.container} onPress={()=>{setModalVisible(!modalVisible)}}>
@@ -51,7 +62,8 @@ export default function TaskCard({data,setTasks}) {
           setModalVisible(!modalVisible)
           navigation.navigate('Edit Task',{_id,name,date})
         }}
-        deleteButtonPress={handleDeleteTask}/>
+        deleteButtonPress={handleDeleteTask}
+        completeTaskButtonPress={handleCompleteTask}/>
       </Modal>
       
    </View>

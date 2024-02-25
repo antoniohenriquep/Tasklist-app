@@ -8,7 +8,7 @@ import { useAuth } from '../../contexts/AuthContext';
 
 export default function NewTask({navigation}) {
     const [name, setName] = useState('')
-    const [dateTask, setDateTask] = useState()
+    const [dateTask, setDateTask] = useState(new Date().toLocaleDateString('pt-br'))
     const [date, setDate] = useState(new Date())
     const [showPicker, setShowPicker] = useState(false)
 

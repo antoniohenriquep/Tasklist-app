@@ -14,8 +14,6 @@ export default function TaskCard({data,forceUpdate}) {
 
   const [modalVisible, setModalVisible] = useState(false)
 
-  useEffect(()=>{console.log(task.done)},[])
-
   async function handleDeleteTask()
   {
       await api.delete(`/tasks/${_id}`)

@@ -1,22 +1,14 @@
 
-import { FlatList, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
 import TaskCard from '../../components/TaskCard';
 import { useCallback, useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useFocusEffect } from '@react-navigation/native';
 
-// const data = [
-//     {id:0, name:"Tirar o lixo", date:'05/02/2024', done:false},
-//     {id:1, name:"Estudar", date:'06/02/2024', done:false},
-//     {id:2, name:"Fazer commit", date:'08/02/2024',  done:false},
-//     {id:3, name:"Organizar coisas", date:'09/02/2024', done:false},
-//     {id:4, name:"Maratona de programacao", date:'12/02/2024', done:false},
-// ]
-
 export default function Tasks({navigation})
 {
   const {api} = useAuth()
-  
+
   const [data, setData] = useState([])
 
   async function getTasks()
@@ -38,10 +30,11 @@ export default function Tasks({navigation})
       data={data}
       keyExtractor={item=>String(item._id)}
       renderItem={({item})=> 
-      <TaskCard 
-      data={item}
-      navigation={navigation}/>}
-      />
+        <TaskCard 
+        forceUpdate={getTasks}
+        data={item}
+        />
+      }/>
 
       <Pressable style={styles.addTaskButtonContainer} onPress={()=>{navigation.navigate('New Task')}}>
         <Text style={styles.addTaskButtonFont}>+</Text>

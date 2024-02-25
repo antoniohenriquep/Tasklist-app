@@ -1,14 +1,28 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import TaskOptionsModal from '../TaskOptionsModal';
 import { useNavigation } from '@react-navigation/native';
+import { useAuth } from '../../contexts/AuthContext';
 
 
-export default function TaskCard({data}) {
+export default function TaskCard({data,forceUpdate}) {
+
   const navigation = useNavigation()
   const task = data
-  const [modalVisible, setModalVisible] = useState(false)
   const {_id,name,date} = data
+  const {api} = useAuth()
+
+  const [modalVisible, setModalVisible] = useState(false)
+
+  useEffect(()=>{console.log(task.done)},[])
+
+  async function handleDeleteTask()
+  {
+      await api.delete(`/tasks/${_id}`)
+      setModalVisible(!modalVisible)
+      forceUpdate()
+  }
+
   return (
     <View >
       <Pressable  style={styles.container} onPress={()=>{setModalVisible(!modalVisible)}}>
@@ -22,7 +36,7 @@ export default function TaskCard({data}) {
           </Text>
           </View>
           <Text style={styles.date}>
-            {task.date ? 'A fazer':'Realizada'}
+            {task.done ? 'Realizada':'A fazer'}
           </Text>
       </Pressable>
 
@@ -37,13 +51,10 @@ export default function TaskCard({data}) {
           console.log(_id)
           setModalVisible(!modalVisible)
           navigation.navigate('Edit Task',{_id,name,date})
-          }}/>
+        }}
+        deleteButtonPress={handleDeleteTask}/>
       </Modal>
       
-      {/* <Modal
-      visible={false}>
-        <Text>Ola</Text>
-      </Modal> */}
    </View>
   );
 }

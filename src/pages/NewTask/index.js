@@ -19,7 +19,7 @@ export default function NewTask({navigation}) {
         await api.post('/tasks',
         {
             name,
-            date: dateTask
+            date: dateTask,
         })
 
         navigation.navigate('Tasks')

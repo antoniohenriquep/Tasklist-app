@@ -1,44 +1,41 @@
-import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, View, Text, Pressable} from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign'
 
+export default function TaskOptionsModal(props) 
+{
+    return (
+        <View style={styles.container}>
+            <View style={styles.box}>
 
-export default function TaskOptionsModal(props) {
-
-    const navigation = useNavigation()
-    async function completeTask(){
-
-    }
-
-return (
-    <View style={styles.container}>
-        <View style={styles.box}>
-
-            <Pressable style={styles.closeButton} onPress={props.closeModal}>
-                <Icon name='close' size={30} color='#fff'/>
-            </Pressable>
-            <View style={{flex:1, alignItems:'center',justifyContent:'center'}}>
-            <Text style={{color:'#fff', fontSize:28}}>O que pretende fazer?</Text>
-            </View>
-            <View style={styles.buttonsRow}>
-                <Pressable style={styles.genericButton} onPress={props.editButtonPress}>
-                    <Text style={{color:'#ffd700',fontWeight:'bold',fontSize:20}}>
-                        Editar
-                    </Text>
+                <Pressable style={styles.closeButton} onPress={props.closeModal}>
+                    <Icon name='close' size={30} color='#fff'/>
                 </Pressable>
+                <View style={{flex:1, alignItems:'center',justifyContent:'center'}}>
+                <Text style={{color:'#fff', fontSize:28}}>O que pretende fazer?</Text>
+                </View>
+                <View style={styles.buttonsRow}>
+                    <Pressable 
+                    style={styles.genericButton} 
+                    onPress={props.editButtonPress}>
+                        <Text style={{color:'#ffd700',fontWeight:'bold',fontSize:20}}>
+                            Editar
+                        </Text>
+                    </Pressable>
 
-                <Pressable style={styles.genericButton}>
-                    <Text style={{color:'green',fontWeight:'bold',fontSize:20}}
-                    >Concluir</Text>
+                    <Pressable style={styles.genericButton}>
+                        <Text style={{color:'green',fontWeight:'bold',fontSize:20}}
+                        >Concluir</Text>
+                    </Pressable>
+                </View>
+
+                <Pressable 
+                style={styles.deleteButton} 
+                onPress={props.deleteButtonPress}>
+                    <Text style={{color:'red',fontWeight:'bold',fontSize:20}}>Excluir</Text>
                 </Pressable>
             </View>
-
-            <Pressable style={styles.deleteButton}>
-                <Text style={{color:'red',fontWeight:'bold',fontSize:20}}>Excluir</Text>
-            </Pressable>
         </View>
-    </View>
-  );
+    );
 }
 
 const styles = StyleSheet.create({

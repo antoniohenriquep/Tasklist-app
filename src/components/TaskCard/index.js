@@ -3,13 +3,14 @@ import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import TaskOptionsModal from '../TaskOptionsModal';
 import { useNavigation } from '@react-navigation/native';
 import { useAuth } from '../../contexts/AuthContext';
+import PriorityFlag from '../PriorityFlag';
 
 
 export default function TaskCard({data,setTasks}) {
 
   const navigation = useNavigation()
   const task = data
-  const {_id,name,date} = data
+  const {_id,name,date, priority} = data
   const {api} = useAuth()
 
   const [modalVisible, setModalVisible] = useState(false)
@@ -45,9 +46,10 @@ export default function TaskCard({data,setTasks}) {
             {task.date}
           </Text>
           </View>
-          <Text style={styles.date}>
+          <Text style={[styles.date,{position:'absolute',left:280}]}>
             {task.done ? 'Realizada':'A fazer'}
           </Text>
+          <PriorityFlag/>
       </Pressable>
 
       <Modal 
@@ -65,7 +67,6 @@ export default function TaskCard({data,setTasks}) {
         deleteButtonPress={handleDeleteTask}
         completeTaskButtonPress={handleCompleteTask}/>
       </Modal>
-      
    </View>
   );
 }

@@ -33,7 +33,6 @@ export default function TaskCard({data,setTasks}) {
     setTasks(response.data)
   }
 
-
   return (
     <View >
       <Pressable  style={styles.container} onPress={()=>{setModalVisible(!modalVisible)}}>
@@ -49,7 +48,7 @@ export default function TaskCard({data,setTasks}) {
           <Text style={[styles.date,{position:'absolute',left:280}]}>
             {task.done ? 'Realizada':'A fazer'}
           </Text>
-          <PriorityFlag/>
+          <PriorityFlag priority={priority}/>
       </Pressable>
 
       <Modal 

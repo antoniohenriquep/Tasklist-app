@@ -1,7 +1,27 @@
 import { View } from 'react-native';
 
-export default function PriorityFlag(props) {
- return (
-   <View style={{width:5,height:'100%',backgroundColor:'green',left:30,borderTopRightRadius:10,borderBottomRightRadius:10}}/>
+export default function PriorityFlag({priority}) {
+
+  function setFlagColor(priority)
+  {
+    switch (priority) {
+      case 'normal':
+        return 'green';
+        
+      case 'important':
+        return 'yellow';
+
+      case 'urgent':
+        return 'red';
+        break;
+    
+      default:
+        return 'green'
+        break;
+    }
+  }
+
+  return (
+    <View style={{width:8,height:'100%',backgroundColor: setFlagColor(priority),left:30,borderTopRightRadius:10,borderBottomRightRadius:10}}/>
   );
 }

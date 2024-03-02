@@ -23,7 +23,7 @@ export default function EditTask({navigation})
     {
         await api.put(`/tasks/${id}`,{
             name,
-            date
+            date: dateTask
         })
 
         navigation.navigate('Tasks')
@@ -45,7 +45,7 @@ export default function EditTask({navigation})
 
             if(Platform.OS === "android")
             {
-                console.log('ola')
+
                 toggleDatePicker()
                 setDateTask(currentDate.toLocaleDateString('pt-br'))
             }

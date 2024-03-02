@@ -13,11 +13,10 @@ export default function PriorityFlag({priority}) {
 
       case 'urgent':
         return 'red';
-        break;
+
     
       default:
         return 'green'
-        break;
     }
   }
 
